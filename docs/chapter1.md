@@ -68,7 +68,7 @@ While working with the instructions that follow, ensure you're logged in to the 
 
 1. #### Deploy an *AMQ Interconnect* Routing layer
 
-	Once the *Operators* are running, deploy the *Interconnect* nodes:
+    Once the *Operators* are running, deploy the *Interconnect* nodes:
 
 	From namespace `amq-cluster1` navigate to:
 
@@ -84,18 +84,18 @@ While working with the instructions that follow, ensure you're logged in to the 
 
 	The YAML should include 2 routes and look as follows:
 
-	```yaml
-	apiVersion: interconnectedcloud.github.io/v1alpha1
-	kind: Interconnect
-	metadata:
-	  name: cluster1-router-mesh
-	  namespace: amq-cluster1
-	spec:
-	  deploymentPlan:
-	  size: 2
-	  role: interior
-	  placement: Any
-	```
+    ```yaml
+    apiVersion: interconnectedcloud.github.io/v1alpha1
+    kind: Interconnect
+    metadata:
+      name: cluster1-router-mesh
+      namespace: amq-cluster1
+    spec:
+      deploymentPlan:
+        size: 2
+        role: interior
+        placement: Any
+    ```
 
 	Click `Create` to kick off the installation. To view the running pods corresponding to the *Interconnect* nodes execute:
 
