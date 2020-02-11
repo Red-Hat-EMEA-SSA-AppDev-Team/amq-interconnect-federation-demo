@@ -2,7 +2,9 @@
 
 ## Deploy *AMQ Interconnect* in Region-1
 
-For this first section, you'll be working on Region-1, we call it **'Cluster-1'**. Ensure you're logged in to the OCP environment representing Region-1.
+For this first section, you'll be working on Region-1, we call it `'Cluster-1'`. Ensure you're logged in to the OCP environment representing Region-1.
+
+<br/>
 
 1. #### Install *AMQ's Certificate Manager Operator*
 
@@ -25,6 +27,7 @@ For this first section, you'll be working on Region-1, we call it **'Cluster-1'*
 	   NAME                                       READY   STATUS    RESTARTS   AGE
 	   cert-manager-controller-7667b78746-gk7x9   1/1     Running   0          8m48s
 
+<br/>
 
 1. #### Install *AMQ's Interconnect Operator*
 
@@ -51,6 +54,7 @@ For this first section, you'll be working on Region-1, we call it **'Cluster-1'*
 	   NAME                                    READY   STATUS    RESTARTS   AGE
 	   interconnect-operator-84f7fcc8b-2x225   1/1     Running   0          28s
 
+<br/>
 
 1. #### Deploy an *AMQ Interconnect* Routing layer
 
@@ -63,7 +67,7 @@ For this first section, you'll be working on Region-1, we call it **'Cluster-1'*
 	Review the default YAML definition and update the following:
 
 	```yaml
-	metadata:name: cluster1-router-mesh
+	metadata: name: cluster1-router-mesh
 	```
 
 	The YAML should include 2 routes and look as follows:
@@ -72,13 +76,13 @@ For this first section, you'll be working on Region-1, we call it **'Cluster-1'*
 	apiVersion: interconnectedcloud.github.io/v1alpha1
 	kind: Interconnect
 	metadata:
-		name: cluster1-router-mesh
-		namespace: amq-cluster1
+	  name: cluster1-router-mesh
+	  namespace: amq-cluster1
 	spec:
-		deploymentPlan:
-		size: 2
-		role: interior
-		placement: Any
+	  deploymentPlan:
+	  size: 2
+	  role: interior
+	  placement: Any
 	```
 
 	Click `Create` to kick off the installation. To view the running pods corresponding to the Interconnect nodes execute:
@@ -115,7 +119,7 @@ For this first section, you'll be working on Region-1, we call it **'Cluster-1'*
 	Include the parameter '`expose: true`'. You should see the following:
 
 	```yaml
-		- port: 5671
+	    - port: 5671
 			sslProfile: default
 			expose: true
 	```
@@ -123,6 +127,7 @@ For this first section, you'll be working on Region-1, we call it **'Cluster-1'*
 
 	   cluster1-router-mesh-5671
 
+<br/>
 
 1. #### Create Certificate to link both clusters
 
@@ -150,6 +155,8 @@ For this first section, you'll be working on Region-1, we call it **'Cluster-1'*
 	mkdir cluster2-inter-router-tls
 	oc extract secret/cluster2-inter-router-tls --to=cluster2-inter-router-tls
 	```
+
+<br/>
 
 1. #### Obtain the route URL for inter-router connections.
 
