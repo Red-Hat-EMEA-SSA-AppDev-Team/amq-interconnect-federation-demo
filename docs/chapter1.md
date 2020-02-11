@@ -68,11 +68,13 @@ While working with the instructions that follow, ensure you're logged in to the 
 
 1. #### Deploy an *AMQ Interconnect* Routing layer
 
-	Once the operators running, deploy the *Interconnect* nodes:
+	Once the *Operators* are running, deploy the *Interconnect* nodes:
 
-	From namespace 'amq-cluster1' navigate to:
+	From namespace `amq-cluster1` navigate to:
 
-	 - Operators -> Installed Operators -> AMQ Interconnect -> AMQ Interconnect -> Create Interconnect
+	 - Operators ➡ Installed Operators ➡ AMQ Interconnect ➡ AMQ Interconnect ➡ Create Interconnect
+	
+	<br/>
 
 	Review the default YAML definition and update the following:
 
