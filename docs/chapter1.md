@@ -2,7 +2,7 @@
 
 ## Deploy *AMQ Interconnect* in Region-1
 
-For this first section, you'll be working on Region-1, we call it `'Cluster-1'`. Ensure you're logged in to the OCP environment representing Region-1.
+For this first section, you'll be working on Region-1, we call it `Cluster-1`. Ensure you're logged in to the OCP environment representing Region-1.
 
 <br/>
 
@@ -14,7 +14,7 @@ For this first section, you'll be working on Region-1, we call it `'Cluster-1'`.
 
 	As an admin, navigate to:
 
-	- Web Console ➡ Operators ➡ OperatorHub ➡ AMQ Certificate Manager ➡ Install ➡ Subscribe
+	- Web Console ➡ Operators ⇨ OperatorHub ⟶ AMQ Certificate Manager → Install ➡ Subscribe
 
 	  (at the time of writing: v1.0.0)
 
