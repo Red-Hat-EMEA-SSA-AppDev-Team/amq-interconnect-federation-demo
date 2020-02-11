@@ -1,4 +1,4 @@
-# Messaging Federation using AMQ Interconnect
+# Messaging Federation using *AMQ Interconnect*
 
 
 ## Introduction
@@ -22,7 +22,8 @@ Highlights of the tutorial are:
 
 	- 1 OpenShift v4.2 cluster as Region-1
 	- 1 OpenShift v4.2 cluster as Region-2
-
+	^
+	
 	To run this tutorial/demo you would ideally require to have two different OpenShift clusters available so that you can fully demonstrate how messaging traffic really jumps from one region to another. However, if you need to compromise in resources usage, there is a number of economy approaches you can take.
 
 	Here below you have a set of proposed rates:
