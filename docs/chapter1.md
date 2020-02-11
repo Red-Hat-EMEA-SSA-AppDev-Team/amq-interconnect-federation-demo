@@ -4,6 +4,11 @@
 
 For this first section, you'll be working on Region-1, we call it `Cluster-1`. Ensure you're logged in to the OCP environment representing Region-1.
 
+
+![](./images/pending.png)
+a view of Region 1 with target deployment
+
+
 <br/>
 
 1. #### Install *AMQ's Certificate Manager Operator*
@@ -14,7 +19,7 @@ For this first section, you'll be working on Region-1, we call it `Cluster-1`. E
 
 	As an admin, navigate to:
 
-	- Web Console ➡ Operators ⇨ OperatorHub ⟶ AMQ Certificate Manager → Install ➡ Subscribe
+	- Web Console ➡ Operators ➡ OperatorHub ➡ AMQ Certificate Manager ➡ Install ➡ Subscribe
 
 	  (at the time of writing: v1.0.0)
 
