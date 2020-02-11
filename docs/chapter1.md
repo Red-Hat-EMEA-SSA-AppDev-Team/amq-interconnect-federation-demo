@@ -2,12 +2,15 @@
 
 ## Deploy *AMQ Interconnect* in Region-1
 
-For this first section, you'll be working on Region-1, we call it `Cluster-1`. Ensure you're logged in to the OCP environment representing Region-1.
+For this first section, you'll be working on Region-1, we call it `Cluster-1`. The picture below illustrates the deployment process you're about to perform. 
 
 
-![](./images/pending.png)
-a view of Region 1 with target deployment
+![](./images/region-1-intro.png "Interconnect Mesh of size 2")
 
+
+As above pictured, two different *Operators* are at play. The *AMQ Interconnect Operator* will deploy two nodes (Routers). Then it links them to form a mesh of size two and uses the *AMQ Certificate Manager* to secure the connection between both. 
+
+While working with the instructions that follow, ensure you're logged in to the OCP environment corresponding to Region-1.
 
 <br/>
 
@@ -27,6 +30,8 @@ a view of Region 1 with target deployment
 
 	   oc get pods -n openshift-operators
 
+	>**Be patient:** this action might take some time as OpenShift needs to pull the Operator's image from a remote repository
+
 	You should see something similar to:
 
 	   NAME                                       READY   STATUS    RESTARTS   AGE
@@ -44,7 +49,7 @@ a view of Region 1 with target deployment
 
 	Install *AMQ's Interconnect Operator*:
 
-	 - Web Console -> Operators -> OperatorHub -> AMQ Interconnect -> Install 
+	 - Web Console ➡ Operators ➡ OperatorHub ➡ AMQ Interconnect ➡ Install 
 
 		(at the time of writing: v1.1.0)
 
