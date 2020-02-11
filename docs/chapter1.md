@@ -74,7 +74,7 @@ While working with the instructions that follow, ensure you're logged in to the 
 
 	 - Operators ➡ Installed Operators ➡ AMQ Interconnect ➡ AMQ Interconnect ➡ Create Interconnect
 	
-	<br/>
+	>**Note:** the default YAML content defines an *Interconnect* of `size 2` which indicates the *Operator* to deploy 2 linked router nodes.
 
 	Review the default YAML definition and update the following:
 
@@ -97,7 +97,7 @@ While working with the instructions that follow, ensure you're logged in to the 
 	  placement: Any
 	```
 
-	Click `Create` to kick off the installation. To view the running pods corresponding to the Interconnect nodes execute:
+	Click `Create` to kick off the installation. To view the running pods corresponding to the *Interconnect* nodes execute:
 
 	   oc get pods -n amq-cluster1
 
