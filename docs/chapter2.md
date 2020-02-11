@@ -1,0 +1,191 @@
+## Deploy *AMQ Interconnect* in Region-2
+
+In this section you'll be working on Region-2, we call it **'Cluster-2'**. Ensure you're logged in to the OCP environment representing Region-2.
+
+1. #### Create Secret from Cluster-1's certificate
+
+	First, create the new Cluster-2 namespace, for example:
+
+	   oc new-project amq-cluster2
+
+	Then, from the same folder location where you obtained the Certificate, create the *Secret* with:
+
+	   oc create secret generic cluster2-inter-router-tls --from-file=cluster2-inter-router-tls
+
+
+1. #### Install *AMQ's Certificate Manager Operator*
+
+	As previously done for Cluster-1, as an admin user, navigate to:
+
+	 - Web Console -> Operators -> OperatorHub -> AMQ Certificate Manager -> Install -> Subscribe
+
+		(at the time of writing: v1.0.0)
+
+	This will trigger a cluster wide installation. To view the running pod execute:
+
+	   oc get pods -n openshift-operators
+
+	You should see something similar to:
+
+	```
+	NAME                                       READY   STATUS    RESTARTS   AGE
+	cert-manager-controller-7667b78746-gk7x9   1/1     Running   0          8m48s
+	```
+
+1. #### Install *AMQ's Interconnect Operator*
+
+
+	As a standard user, create a new namespace, for example:
+
+	   oc new-project amq-cluster2
+
+
+	Install *AMQ's Interconnect Operator*:
+
+	- Web Console -> Operators -> OperatorHub -> AMQ Interconnect -> Install 
+
+		(at the time of writing: v1.1.0)
+
+	Select `amq-cluster2` as the target namespace, and click '*Subscribe*'.
+
+	This will trigger the operator's installation. To view the running pod execute:
+
+	   oc get pods -n amq-cluster2
+
+	You should see something similar to:
+	```
+	NAME                                    READY   STATUS    RESTARTS   AGE
+	interconnect-operator-84f7fcc8b-2x225   1/1     Running   0          28s
+	```
+	
+
+
+1. #### Deploy an *Interconnect* Routing layer
+
+	Once the operators running, deploy the Interconnect nodes:
+
+	From namespace 'amq-cluster2':
+
+	- Operators -> Installed Operators -> AMQ Interconnect -> AMQ Interconnect -> Create Interconnect
+
+	Review the default YAML definition and update the following:
+
+	```yaml
+		metadata:name: cluster2-router-mesh
+		spec:sslProfiles: (view sample below)
+		spec:interRouterConnectors (view sample below)
+	```
+	The YAML should include 2 routes and look as follows:
+
+	```yaml
+	apiVersion: interconnectedcloud.github.io/v1alpha1
+	kind: Interconnect
+	metadata:
+		name: cluster2-router-mesh
+		namespace: amq-cluster2
+	spec:
+		deploymentPlan:
+		size: 2
+		role: interior
+		placement: Any
+		sslProfiles:
+		- name: inter-cluster-tls
+		credentials: cluster2-inter-router-tls
+		caCert: cluster2-inter-router-tls
+		interRouterConnectors:
+		- host: cluster1-router-mesh-55671-amq-cluster1.apps.cluster-env.env.example.opentlc.com
+		port: 443
+		verifyHostname: false
+		sslProfile: inter-cluster-tls
+	```
+
+	>**Important:**
+		Ensure the host URL is configured with the Route URL you kept from Cluster-1.
+
+
+	Click '*Create*' to kick off the installation. To view the running pods corresponding to the Interconnect nodes execute:
+
+	   oc get pods -n amq-cluster2
+
+	You should see something similar to:
+
+	```
+	NAME                                     READY   STATUS    RESTARTS   AGE
+	cluster2-router-mesh-594f87df49-gm6zr    1/1     Running   0          2m34s
+	cluster2-router-mesh-594f87df49-tjfpj    1/1     Running   0          2m34s
+	interconnect-operator-5bdb444f96-ks9ct   1/1     Running   0          32m
+	```
+
+1. #### Expose AMQPS port
+
+	As previously done for Cluster-1, we need to expose the listener's port so that external clients can connect to produce/consume messages.
+
+	From namespace 'amq-cluster2' navigate to:
+
+	- Web Console ➡ Operators ➡ Installed Operators ➡ AMQ Interconnect ➡ AMQ Interconnect ➡ cluster2-router-mesh ➡ YAML
+
+	Review the default YAML definition:
+
+	```yaml
+	spec:listeners - port 5671
+	```
+	Include the parameter '`expose: true`'. You should see the following:
+
+	```yaml
+		- port: 5671
+			sslProfile: default
+			expose: true
+	```
+	Click `Save`. The operator watching the cluster should trigger the creation of a route pointing to the exposed port:
+
+	   cluster2-router-mesh-5671
+
+	Obtain the route's URL so that we can configure external clients to access *Interconnect*. Run the following command:
+
+	   oc get route cluster2-router-mesh-5671 -o=jsonpath={.spec.host}
+
+	Take note of the URL to configure Fuse later in the tutorial.
+
+</br>
+
+## Validate deployments
+
+After deploying both clusters and link them together, it is a good idea to get a visual using *Interconnect*'s web console.
+
+From namespace `amq-cluster2`, navigate to:
+
+ - Web Console -> Networking -> Routes
+
+And click on the HTTP 8080 link which should open *Interconnets*'s console and present the connection parameters.
+
+Use the following parameter values:
+
+ - Address: (default is valid)
+ - Port: `443`
+ - User name:
+		`guest@cluster2-router-mesh`
+ - Password:
+		secret password (see below)
+
+You can obtain the password from the Secret generated by the Operator, run the following command:
+
+- linux:
+
+	  oc get secret cluster2-router-mesh-users -o=jsonpath={.data.guest} | base64 -d
+
+- macos:
+		
+	  oc get secret cluster2-router-mesh-users -o=jsonpath={.data.guest} | base64 -D
+
+
+Once connected you should see listed 4 different routers, corresponding to the a pair from `Cluster-1` and the pair from `Cluster-2`. The *Topology* tab should render how both clusters are linked together to form a single *Routing Layer* mesh.
+
+
+
+
+</br>
+
+---
+
+
+Click the link to the [Next](./chapter3.md) chapter when ready. 
