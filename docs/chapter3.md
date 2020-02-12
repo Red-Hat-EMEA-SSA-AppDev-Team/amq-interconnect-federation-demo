@@ -43,15 +43,15 @@ Add Configuration:
 
 - Point the configuration of this producer to `Cluster-2`.
 
-	For instance, a sample `application.properties` should look similar to the configuration below, where the URL points to Cluster-2 running in CRC:
+  For instance, a sample `application.properties` should look similar to the configuration below, where the URL points to Cluster-2 running in CRC:
 
-	```properties
-	broker.amqp.uri=amqps://cluster2-router-mesh-5671-amq-cluster2.apps-crc.testing:443?transport.trustAll=true&amqp.saslMechanisms=PLAIN
-	broker.amqp.username=guest@cluster2-router-mesh
-	broker.amqp.password=ugJgnruk
-	```
+  ```properties
+  broker.amqp.uri=amqps://cluster2-router-mesh-5671-amq-cluster2.apps-crc.testing:443?transport.trustAll=true&amqp.saslMechanisms=PLAIN
+  broker.amqp.username=guest@cluster2-router-mesh
+  broker.amqp.password=ugJgnruk
+  ```
 
-	>**Note**: the authentication mechanism is SASL Plain, via TLS. The user/password in this configuration would be the same defaults used to access *Interconnect*'s console.
+  >**Note**: the authentication mechanism is SASL Plain, via TLS. The user/password in this configuration would be the same defaults used to access *Interconnect*'s console.
 
 
 Add Connection and Routes
