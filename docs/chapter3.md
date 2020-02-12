@@ -155,17 +155,17 @@ amqp.password=ugJgnruk
 Reminders:
 - you can obtain the URL to AMQP's port in Cluster-1 running:
 
-	  oc get route cluster1-router-mesh-5671 -o=jsonpath={.spec.host}
+	  oc get route cluster1-router-mesh-5671 -o=jsonpath={.spec.host} -n amq-cluster1
 
 - you can obtain the `guest`'s password as follows:
 
 	linux:
 
-		oc get secret cluster1-router-mesh-users -o=jsonpath={.data.guest} | base64 -d
+		oc get secret cluster1-router-mesh-users -o=jsonpath={.data.guest} -n amq-cluster1 | base64 -d
 
 	macos:
 			
-		oc get secret cluster1-router-mesh-users -o=jsonpath={.data.guest} | base64 -D
+		oc get secret cluster1-router-mesh-users -o=jsonpath={.data.guest} -n amq-cluster1 | base64 -D
 
 
 The *Camel* route definition to include can look like:
@@ -187,12 +187,35 @@ You should see in the logs how *Camel* connects to the cluster and starts listen
 
 If the client is up and running, the flow of messages will begin, since the consumer gives credit to the producer to start sending messages.
 
+Logs from both AMQP clients should be similar to:
+
+- Producer:
+	```
+	... INFO  amqp-producer - sending AMQP request.
+	... INFO  amqp-producer - sending AMQP request.
+	... INFO  amqp-producer - sending AMQP request.
+	... 
+	```
+
+- Consumer:
+   ```
+   ... INFO  amqp-consumer - GOT AMQP request.
+   ... INFO  amqp-consumer - GOT AMQP request.
+   ... INFO  amqp-consumer - GOT AMQP request.
+   ...
+   ```
+
+
+
 *Interconnect*'s web console should show on its topology graph all the entities involved:
 - routing nodes
 - connected web console
-- connected client
-- connected server
+- connected producer
+- connected consumer
 
+<br/>
+
+![](./images/console-visual-clients.png "Connected producer and consumer")
 
 </br>
 
