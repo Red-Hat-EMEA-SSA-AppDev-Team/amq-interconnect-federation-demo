@@ -45,13 +45,33 @@ Add Configuration:
 
   For instance, a sample `application.properties` should look similar to the configuration below, where the URL points to Cluster-2 running in CRC:
 
-  ```properties
-  broker.amqp.uri=amqps://cluster2-router-mesh-5671-amq-cluster2.apps-crc.testing:443?transport.trustAll=true&amqp.saslMechanisms=PLAIN
-  broker.amqp.username=guest@cluster2-router-mesh
-  broker.amqp.password=ugJgnruk
-  ```
+	```properties
+	# AMQP connectivity
+	amqp.uri=amqps://cluster2-router-mesh-5671-amq-cluster2.apps-crc.testing:443?transport.trustAll=true&jms.sendTimeout=10000&amqp.saslMechanisms=PLAIN
+	amqp.username=guest@cluster2-router-mesh
+	amqp.password=sGZqNMFk
+	```
 
   >**Note**: the authentication mechanism is SASL Plain, via TLS. The user/password in this configuration would be the same defaults used to access *Interconnect*'s console.
+
+	Reminders:
+	- you can obtain the URL to AMQP's port in Cluster-2 running:
+
+	      oc get route cluster2-router-mesh-5671 -o=jsonpath={.spec.host}
+
+	- you can obtain the `guest`'s password as follows:
+
+	  linux:
+
+		  oc get secret cluster2-router-mesh-users -o=jsonpath={.data.guest} | base64 -d
+
+	  macos:
+				
+		  oc get secret cluster2-router-mesh-users -o=jsonpath={.data.guest} | base64 -D
+
+
+		
+
 
 
 Add Connection and Routes
@@ -63,9 +83,9 @@ Add Connection and Routes
 		<bean id="jmsConnectionFactory"
 			class="org.apache.qpid.jms.JmsConnectionFactory"
 			primary="true">
-				<property name="remoteURI" value="${broker.amqp.uri}" />
-				<property name="username" value="${broker.amqp.username}" />
-				<property name="password" value="${broker.amqp.password}" />
+				<property name="remoteURI" value="${amqp.uri}" />
+				<property name="username" value="${amqp.username}" />
+				<property name="password" value="${amqp.password}" />
 		</bean>
 		<bean id="jmsCachingConnectionFactory"
 			class="org.springframework.jms.connection.CachingConnectionFactory">
