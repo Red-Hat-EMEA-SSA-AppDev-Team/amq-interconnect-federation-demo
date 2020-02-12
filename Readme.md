@@ -11,7 +11,7 @@ In the world of messaging and using message brokers alone, this is a challenge d
 
 This tutorial showcases how to deploy an *AMQ* messaging layer that federates two different OpenShift clusters using AMQ Interconnect. This allows different AMQ clients, connected to different data centers, to exchange messages unaware about the regional distance that separates them. 
 
-Highlights of the tutorial are:
+### Highlights of the tutorial are:
 
 - Use of Operators to deploy components
 - Use of Camel/Fuse to easily implement AMQP Clients
