@@ -137,16 +137,16 @@ Use the following *Maven* coordinates:
 	'artifactId': consumer
 	'version': 1.0.0
 
-A sample '`application.properties`' should look similar to:
+A sample `application.properties` should look similar to the configuration below, where the URL points to Cluster-1 running in CRC:
 
 ```properties
 # Disable HTTP port (prevents conflict with client)
 spring.main.web-environment=false
 
 # AMQP configuration to Cluster-1
-amqp.uri=amqps://cluster1-router-mesh-5671-amq-cluster1.apps.cluster-demo.demo.example.opentlc.com:443?transport.trustAll=true&amqp.saslMechanisms=PLAIN
+amqp.uri=amqps://cluster1-router-mesh-5671-amq-cluster1.apps-crc.testing:443?transport.trustAll=true&amqp.saslMechanisms=PLAIN
 amqp.username=guest@cluster1-router-mesh
-amqp.password=ugJgnruk
+amqp.password=VMBojiuX
 ```
 
 >**Note**: the authentication mechanism is SASL Plain, via TLS. The password can be obtained running the following command against Cluster-1

@@ -1,5 +1,5 @@
 
-## Deploy an AMQ Broker
+## Attach an AMQ Broker
 
 The previous message flow was broker-less, it requires both producer and consumer to be active for the traffic to flow.
 
@@ -7,6 +7,9 @@ The above works well for systems designed to run synchronously. You might howeve
 
 You can attach an AMQ Broker to the routing layer to enable store & forward messaging. This would enable the messaging layer to persist messages and retain them until a consumer connects to the network and consumes them.
 
+![](./images/interconnect-brokered.png "An AMQ Broker is attached to the mesh")
+
+In the instructions below you will be adhering an AMQ Broker to Region-2 where messages will be persisted before the cross to Region-1. Please note that the entire *Routing Mesh* acts as a single logical cluster, therefore, the location of where the AMQ Broker is attached is not critical.
 
 1. #### Install AMQ's Broker Operator
 
