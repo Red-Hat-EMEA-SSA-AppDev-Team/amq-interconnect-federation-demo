@@ -150,7 +150,9 @@ While working with the instructions that follow, ensure you're logged in to the 
 
 1. #### Create Certificate to link both clusters
 
-	Define a Certificate YAML file to request a certificate:
+	*Region-1* is now operational. Region-2 is pending to be deployed and connected to Region-1. The cross-region link will need to be secured, and for that we need to generate a certificate Region-2 will use.
+
+	Define a Certificate YAML file `certificate-request.yaml` to generate a certificate:
 
 	```yaml
 	apiVersion: certmanager.k8s.io/v1alpha1
