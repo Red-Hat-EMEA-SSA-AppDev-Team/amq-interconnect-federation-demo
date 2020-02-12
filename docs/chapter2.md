@@ -142,6 +142,8 @@ While working with the instructions that follow, ensure you're logged in to the 
 
 	> Note: later in this chapter you will open *Interconnect*'s web console to visually validate the mesh is well formed. 
 
+<br/>
+
 
 1. #### Expose AMQPS port
 
@@ -149,22 +151,26 @@ While working with the instructions that follow, ensure you're logged in to the 
 
 	![](./images/amqps-access.png "Exposed AMQPS access")
 
-	From namespace 'amq-cluster2' navigate to:
+	From namespace `amq-cluster2` navigate to:
 
 	- Web Console ➡ Operators ➡ Installed Operators ➡ AMQ Interconnect ➡ AMQ Interconnect ➡ cluster2-router-mesh ➡ YAML
+
+	>**Note:** the default AMQPS port is `5671` which is the one to expose.
 
 	Review the default YAML definition:
 
 	```yaml
-	spec:listeners - port 5671
+	spec: listeners: - port 5671
 	```
-	Include the parameter '`expose: true`'. You should see the following:
+
+	Include the parameter `expose: true`. You should see the following:
 
 	```yaml
-		- port: 5671
-			sslProfile: default
-			expose: true
+	    - port: 5671
+          sslProfile: default
+          expose: true
 	```
+	
 	Click `Save`. The operator watching the cluster should trigger the creation of a route pointing to the exposed port:
 
 	   cluster2-router-mesh-5671
