@@ -83,7 +83,7 @@ While working with the instructions that follow, ensure you're logged in to the 
 	metadata: name: cluster1-router-mesh
 	```
 
-	The YAML should include 2 routes and look as follows:
+	The YAML should include 2 Routers and look as follows:
 
     ```yaml
     apiVersion: interconnectedcloud.github.io/v1alpha1

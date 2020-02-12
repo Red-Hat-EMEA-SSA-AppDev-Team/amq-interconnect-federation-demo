@@ -93,7 +93,7 @@ While working with the instructions that follow, ensure you're logged in to the 
 	spec: interRouterConnectors: (view sample below)
 	```
 
-	The YAML should include 2 routes and look as follows:
+	The YAML should include 2 Routers and look as follows:
 
 	```yaml
 	apiVersion: interconnectedcloud.github.io/v1alpha1
@@ -111,14 +111,21 @@ While working with the instructions that follow, ensure you're logged in to the 
 	    credentials: cluster2-inter-router-tls
 	    caCert: cluster2-inter-router-tls
 	  interRouterConnectors:
-	  - host: cluster1-router-mesh-55671-amq-cluster1.apps.cluster-env.env.example.opentlc.com
+	  - host: [HERE THE URL TO CLUSTER-1 PORT 55671]
 	    port: 443
 	    verifyHostname: false
 	    sslProfile: inter-cluster-tls
 	```
 
 	>**Important:**
-		Ensure the host URL is configured with the Route URL you kept from Cluster-1.
+		Ensure the field's `host` URL is configured with the Route URL you kept from Cluster-1.
+
+	**Example**:
+	 - if Cluster-1 was deployed in a *CodeReady Containers* *OpenShift* environment, the field `host` would contain a value similar to:
+
+    	```yaml
+	      - host: cluster1-router-mesh-55671-amq-cluster1.apps-crc.testing
+	    ```
 
 
 	Click '*Create*' to kick off the installation. To view the running pods corresponding to the Interconnect nodes execute:
