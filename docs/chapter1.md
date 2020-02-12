@@ -125,20 +125,22 @@ While working with the instructions that follow, ensure you're logged in to the 
 
 	From namespace `amq-cluster1` navigate to:
 
-	- Web Console -> Operators -> Installed Operators -> AMQ Interconnect -> AMQ Interconnect -> cluster1-router-mesh -> YAML
+	- Web Console ➡ Operators ➡ Installed Operators ➡ AMQ Interconnect ➡ AMQ Interconnect ➡ cluster1-router-mesh ➡ YAML
+
+	>**Note:** the default AMQPS port is `5671` which is the one to expose.
 
 	Review the default YAML definition:
 
 	```yaml
-	spec:listeners - port 5671
+	spec: listeners: - port 5671
 	```
 
 	Include the parameter '`expose: true`'. You should see the following:
 
 	```yaml
 	    - port: 5671
-			sslProfile: default
-			expose: true
+          sslProfile: default
+          expose: true
 	```
 	Click `Save`. The operator watching the cluster should trigger the creation of a route pointing to the exposed port:
 
