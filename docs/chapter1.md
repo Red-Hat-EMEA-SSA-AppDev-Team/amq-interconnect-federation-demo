@@ -177,13 +177,21 @@ While working with the instructions that follow, ensure you're logged in to the 
 	oc extract secret/cluster2-inter-router-tls --to=cluster2-inter-router-tls
 	```
 
+	Keep the extracted certificate at hand when deploying Region-2 later in the tutorial.
+
 <br/>
 
 1. #### Obtain the route URL for inter-router connections.
 
-	When deploying *Interconnect*, the *Operator* has exposed the inter-router port to accept new nodes into the mesh. We need to obtain its URL so that we can configure `Cluster-2` to connect to this cluster.
+	When Interconnect was deployed by the Operator it also exposed the inter-router port to allow other external Interconnect nodes to link to this cluster.
 
-	The default inter-router listener port is `55671`, execute the following command:
+	The inter-router port is internal to Interconnect and only used to link new router nodes to the mesh.
+	
+	>**Note:** the default inter-router port is `55671` which is the one already exposed.
+
+	We need to obtain its route URL so that we can configure `Cluster-2` to connect to this cluster.
+
+	Execute the following command:
 
 	   oc get route cluster1-router-mesh-55671 -o=jsonpath={.spec.host}
 
