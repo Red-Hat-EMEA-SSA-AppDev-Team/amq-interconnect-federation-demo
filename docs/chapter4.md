@@ -195,4 +195,4 @@ Since we've attached a *Broker* to *Interconnect*, the messaging flow run earlie
 
 **Well done!** you've reached the end of the tutorial and you should have successfully deployed a full Federated multi-cluster Messaging layer.
 
-You can return to the main [Introduction page](../Readme.md) and start all over again !
+You can return to the main [Introduction page](../Readme.md#messaging-federation-using-amq-interconnect) and start all over again !
