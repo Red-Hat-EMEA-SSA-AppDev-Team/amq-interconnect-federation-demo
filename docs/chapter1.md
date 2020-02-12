@@ -135,7 +135,7 @@ While working with the instructions that follow, ensure you're logged in to the 
 	spec: listeners: - port 5671
 	```
 
-	Include the parameter '`expose: true`'. You should see the following:
+	Include the parameter `expose: true`. You should see the following:
 
 	```yaml
 	    - port: 5671
@@ -156,12 +156,12 @@ While working with the instructions that follow, ensure you're logged in to the 
 	apiVersion: certmanager.k8s.io/v1alpha1
 	kind: Certificate
 	metadata:
-		name: cluster2-inter-router-tls
+	  name: cluster2-inter-router-tls
 	spec:
-		commonName: cluster1-router-mesh-myproject.cluster2.openshift.com
-		issuerRef:
-		name: cluster1-router-mesh-inter-router-ca
-		secretName: cluster2-inter-router-tls
+	  commonName: cluster1-router-mesh-myproject.cluster2.openshift.com
+	  issuerRef:
+	    name: cluster1-router-mesh-inter-router-ca
+	  secretName: cluster2-inter-router-tls
 	```
 
 	Create the Certificate in Openshift:
