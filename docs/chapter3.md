@@ -27,10 +27,10 @@ mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate \
 With coordinates:
 
 	'groupId': org.demo
-	'artifactId': client
+	'artifactId': producer
 	'version': 1.0.0
 
-Add POM dependencies:
+Add in the POM file the following dependency:
 
 ```xml
 <dependency>
@@ -41,9 +41,9 @@ Add POM dependencies:
 
 Add Configuration:
 
-- We point the configuration of this producer to `Cluster-2`.
+- Point the configuration of this producer to `Cluster-2`.
 
-	A sample '`application.properties`' should look similar to:
+	For instance, a sample `application.properties` should look similar to the configuration below, where the URL points to Cluster-2 running in CRC:
 
 	```properties
 	broker.amqp.uri=amqps://cluster2-router-mesh-5671-amq-cluster2.apps-crc.testing:443?transport.trustAll=true&amqp.saslMechanisms=PLAIN
