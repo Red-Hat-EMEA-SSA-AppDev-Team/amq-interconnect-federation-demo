@@ -99,14 +99,18 @@ In the instructions below you will be adhering an AMQ Broker to Region-2 where m
 
 	   broker1-hdls-svc
 
-	>**OPTIONAL**: If you'd like to access the Broker's web console you can create a Route, navigate to:
-	- Web Console ➡ Networking ➡ Routes ➡ Create Route
-		```
-		Name:        amq-console
-		Service:     broker1-hdls-svc
-		Target Port: 8161 -> 8161 (TCP)
-		```
+	>**OPTIONAL**: If you'd like to access the Broker's web console you can create a Route, follow the instructions below:
+	
+	- Navigate to:
+		- Web Console ➡ Networking ➡ Routes ➡ Create Route
+			```
+			Name:        amq-console
+			Service:     broker1-hdls-svc
+			Target Port: 8161 -> 8161 (TCP)
+			```
 		Click '*Create*'.
+
+		Open the *Location* link in a new browser tab. It should open AMQ's Broker Management console. Default credentials are `admin/admin`.
 
 <br/>
 
