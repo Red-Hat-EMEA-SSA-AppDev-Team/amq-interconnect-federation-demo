@@ -146,6 +146,9 @@ While working with the instructions that follow, ensure you're logged in to the 
 
 	   cluster1-router-mesh-5671
 
+	>**Note:** for now we won't make use of it, until both regions are fully deployed and we then point our AMQP clients to this AMQPS port to send traffic.
+
+
 <br/>
 
 1. #### Create Certificate to link both clusters
@@ -183,9 +186,9 @@ While working with the instructions that follow, ensure you're logged in to the 
 
 1. #### Obtain the route URL for inter-router connections.
 
-	When Interconnect was deployed by the Operator it also exposed the inter-router port to allow other external Interconnect nodes to link to this cluster.
+	When *Interconnect* was deployed by the *Operator* it also exposed the inter-router port to allow other external *Interconnect* nodes to link to this cluster.
 
-	The inter-router port is internal to Interconnect and only used to link new router nodes to the mesh.
+	The inter-router port is internal to *Interconnect* and only used to link new router nodes to the mesh.
 	
 	>**Note:** the default inter-router port is `55671` which is the one already exposed.
 
@@ -196,6 +199,10 @@ While working with the instructions that follow, ensure you're logged in to the 
 	   oc get route cluster1-router-mesh-55671 -o=jsonpath={.spec.host}
 
 	Keep the URL value at hand, we will configure the second cluster with it.
+
+	If you're using *CodeReady Containers* (CRC) as your *OpenShift* environment, the obtained URL should look like:
+
+	   cluster1-router-mesh-55671-amq-cluster1.apps-crc.testing
 
 
 </br>
