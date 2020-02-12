@@ -112,7 +112,7 @@ While working with the instructions that follow, ensure you're logged in to the 
 	```
 	We will assume at this point that both *Interconnect* nodes are correctly linked and they already form by themselves a mesh of 2 nodes.
 
-	> Note: in a later section you will learn how to open Interconnect's web console to visually validate the mesh is well formed. 
+	> Note: in a later section you will learn how to open *Interconnect*'s web console to visually validate the mesh is well formed. 
 
 <br/>
 

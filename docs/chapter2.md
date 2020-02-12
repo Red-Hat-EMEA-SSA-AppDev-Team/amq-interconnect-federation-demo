@@ -127,8 +127,7 @@ While working with the instructions that follow, ensure you're logged in to the 
 	      - host: cluster1-router-mesh-55671-amq-cluster1.apps-crc.testing
 	    ```
 
-
-	Click '*Create*' to kick off the installation. To view the running pods corresponding to the Interconnect nodes execute:
+	Click '*Create*' to kick off the installation. To view the running pods corresponding to the *Interconnect* nodes execute:
 
 	   oc get pods -n amq-cluster2
 
@@ -141,9 +140,14 @@ While working with the instructions that follow, ensure you're logged in to the 
 	interconnect-operator-5bdb444f96-ks9ct   1/1     Running   0          32m
 	```
 
+	> Note: later in this chapter you will open *Interconnect*'s web console to visually validate the mesh is well formed. 
+
+
 1. #### Expose AMQPS port
 
 	As previously done for Cluster-1, we need to expose the listener's port so that external clients can connect to produce/consume messages.
+
+	![](./images/amqps-access.png "Exposed AMQPS access")
 
 	From namespace 'amq-cluster2' navigate to:
 
