@@ -70,10 +70,6 @@ Add Configuration:
 		  oc get secret cluster2-router-mesh-users -o=jsonpath={.data.guest} | base64 -D
 
 
-		
-
-
-
 Add Connection and Routes
 
  - Spring XML:
@@ -109,7 +105,7 @@ Add Connection and Routes
 	```xml
 		<route id="amqp-producer">
 			<from uri="timer:tick"/>
-			<log message="sending MQ JMS request."/>
+			<log message="sending AMQP request."/>
 			<setBody>
 				<simple>TLS AMQP message</simple>
 			</setBody>
@@ -123,13 +119,13 @@ Run *Fuse* locally with:
 
 You should see in the logs how *Camel* connects to the cluster and attempts to send a message. In the logs you should see:
 
-	... INFO  amqp-producer - sending MQ JMS request.
+	... INFO  amqp-producer - sending AMQP request.
 
-You will observe *Fuse* waits for the process to complete sending the message, but nothing happens. This is because *Fuse* succeeded to connect but it's not obtaining credit from Interconnect to allow him to send the message. Only when a consumer is listening, the producer will obtain credit.
+You will observe *Fuse* waits for the process to send the message, but nothing happens. This is because *Fuse* succeeds to connect but it's not obtaining credit from *Interconnect* to allow it to send the message. Only when a consumer is on the other end, the producer will obtain credit.
 
 </br>
 
-## Create a Fuse client consumer
+## Create a *Fuse* client consumer
 
 We also use *Fuse* to create the *AMQP* consumer that will be listening from `Cluster-1`.
 
@@ -138,7 +134,7 @@ The *Fuse* consumer implementation will be identical to the producer, except its
 Use the following *Maven* coordinates:
 
 	'groupId': org.demo
-	'artifactId': server
+	'artifactId': consumer
 	'version': 1.0.0
 
 A sample '`application.properties`' should look similar to:
@@ -148,20 +144,28 @@ A sample '`application.properties`' should look similar to:
 spring.main.web-environment=false
 
 # AMQP configuration to Cluster-1
-broker.amqp.uri=amqps://cluster1-router-mesh-5671-amq-cluster1.apps.cluster-demo.demo.example.opentlc.com:443?transport.trustAll=true&amqp.saslMechanisms=PLAIN
-broker.amqp.username=guest@cluster1-router-mesh
-broker.amqp.password=ugJgnruk
+amqp.uri=amqps://cluster1-router-mesh-5671-amq-cluster1.apps.cluster-demo.demo.example.opentlc.com:443?transport.trustAll=true&amqp.saslMechanisms=PLAIN
+amqp.username=guest@cluster1-router-mesh
+amqp.password=ugJgnruk
 ```
 
 >**Note**: the authentication mechanism is SASL Plain, via TLS. The password can be obtained running the following command against Cluster-1
 
-- linux:
-	   
-	  oc get secret cluster1-router-mesh-users -o=jsonpath={.data.guest} | base64 -d
 
-- macos:
+Reminders:
+- you can obtain the URL to AMQP's port in Cluster-1 running:
 
-	  oc get secret cluster1-router-mesh-users -o=jsonpath={.data.guest} | base64 -D
+	  oc get route cluster1-router-mesh-5671 -o=jsonpath={.spec.host}
+
+- you can obtain the `guest`'s password as follows:
+
+	linux:
+
+		oc get secret cluster1-router-mesh-users -o=jsonpath={.data.guest} | base64 -d
+
+	macos:
+			
+		oc get secret cluster1-router-mesh-users -o=jsonpath={.data.guest} | base64 -D
 
 
 The *Camel* route definition to include can look like:
@@ -195,4 +199,4 @@ If the client is up and running, the flow of messages will begin, since the cons
 ---
 
 
-Click the link to the [Next](./chapter3.md) chapter when ready. 
+Click the link to the [Next](./chapter4.md) chapter when ready. 
