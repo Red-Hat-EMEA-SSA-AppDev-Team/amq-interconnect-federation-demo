@@ -1,7 +1,7 @@
 
 ## Attach an AMQ Broker
 
-The previous message flow was broker-less, it requires both producer and consumer to be active for the traffic to flow.
+The previous message flow was broker-less, it requires both producer and consumer to be active for the traffic to flow. It is a very advantageous messaging pattern as it guarantees message delivery from the producer to the consumer.
 
 The above works well for systems designed to run synchronously. You might however require to accommodate asynchronous clients in need to send messages when no active consumer is running.
 
@@ -10,6 +10,9 @@ You can attach an *AMQ Broker* to the routing layer to enable store & forward me
 ![](./images/interconnect-brokered.png "An AMQ Broker is attached to the mesh")
 
 In the instructions below you will be adhering an AMQ Broker to Region-2 where messages will be persisted before they cross to Region-1. Please note that the entire *Routing Mesh* acts as a single logical cluster, therefore, the location of where the AMQ Broker is attached is not critical.
+
+>**Good to know:**
+*Interconnect* never takes ownership of a message, it only wires connectivity between ends. Furthermore, in the *AMQP* specification, anything can be an *AMQP* client, that includes *Brokers*, meaning *Interconnect* could enable a transition path from one broker to another, as if one was an *AMQP* producer and the other an *AMQP* consumer.
 
 <br/>
 

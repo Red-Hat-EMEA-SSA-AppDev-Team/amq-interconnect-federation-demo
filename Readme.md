@@ -30,9 +30,9 @@ Highlights of the tutorial are:
 
 	Here below you have a set of proposed rates:
 
-	- First class: Run 2 clusters in 2 real different OpenShift instances
-	- Business class: Run a single OpenShift cluster, and simulate regions using OpenShift Namespaces
-	- Economy class: Run OpenShift only in your laptop
+	- **First class**: Run 2 clusters in 2 real different OpenShift instances
+	- **Business class**: Run a single OpenShift cluster, and simulate regions using OpenShift Namespaces
+	- **Economy class**: Run OpenShift only in your laptop
 	<br/>
 
 	If you're on Economy, it is mostly recommended to use *CodeReady Containers* (CRC) to run your OCP environment in your laptop. It provides a working OCP v4.2 environment, with some capabilities off so that your laptop can still breathe. See the *CRC* documentation references given below for more details.
@@ -51,13 +51,15 @@ Highlights of the tutorial are:
 	 - official: \
    		https://access.redhat.com/documentation/en-us/red_hat_amq/7.5/html-single/deploying_amq_interconnect_on_openshift/index#creating-inter-cluster-router-network-router-ocp
 
+	<br/>
+
  - *CodeReady Containers*
 	 - official: \
 	 		https://access.redhat.com/documentation/en-us/red_hat_codeready_containers/1.4/html/getting_started_guide/index
 	 - installer: \
 	 		https://cloud.redhat.com/openshift/install/crc/installer-provisioned
 	 - blogs: \
-	 		https://computingforgeeks.com/setup-local-openshift-cluster-with-codeready-containers/
+	 		https://computingforgeeks.com/setup-local-openshift-cluster-with-codeready-containers/ \
 	 		https://haralduebele.blog/2019/09/13/red-hat-openshift-4-on-your-laptop/
 
 
