@@ -9,30 +9,30 @@ In the world of messaging and using message brokers alone, this is a challenge d
 
 ![](./docs/images/federation-intro.png "federated network")
 
-This tutorial showcases how to deploy an *AMQ* messaging layer that federates two different OpenShift clusters using AMQ Interconnect. This allows different AMQ clients, connected to different data centers, to exchange messages unaware about the regional distance that separates them. 
+This tutorial showcases how to deploy an *AMQ* messaging layer that federates two different *OpenShift* clusters using *AMQ Interconnect*. This allows different *AMQ* clients, connected to different data centers, to exchange messages unaware about the regional distance that separates them. 
 
 ### Highlights of the tutorial are:
 
-- Use of Operators to deploy components
-- Use of Camel/Fuse to easily implement AMQP Clients
-- Use of AMQ brokers to enable asynchronous patterns.
-- Secure AMQ Interconnect endpoints.
+- Use of *Operators* to deploy components
+- Use of *Camel/Fuse* to easily implement *AMQP* Clients
+- Use of *AMQ* brokers to enable asynchronous patterns.
+- Secure *AMQ Interconnect* endpoints.
 
 ## Dependencies
 
-1. OpenShift environments
+1. *OpenShift* environments
 
-	- 1 OpenShift v4.2 cluster as Region-1
-	- 1 OpenShift v4.2 cluster as Region-2
+	- 1 *OpenShift* v4.2 cluster as Region-1
+	- 1 *OpenShift* v4.2 cluster as Region-2
 	<br/>
 	
-	To run this tutorial/demo you would ideally require to have two different OpenShift clusters available so that you can fully demonstrate how messaging traffic really jumps from one region to another. However, if you need to compromise in resources usage, there is a number of economy approaches you can take.
+	To run this tutorial/demo you would ideally require to have two different *OpenShift* clusters available so that you can fully demonstrate how messaging traffic really jumps from one region to another. However, if you need to compromise in resources usage, there is a number of economy approaches you can take.
 
 	Here below you have a set of proposed rates:
 
-	- **First class**: Run 2 clusters in 2 real different OpenShift instances
-	- **Business class**: Run a single OpenShift cluster, and simulate regions using OpenShift Namespaces
-	- **Economy class**: Run OpenShift only in your laptop
+	- **First class**: Run 2 clusters in 2 real different *OpenShift* instances
+	- **Business class**: Run a single *OpenShift* cluster, and simulate regions using *OpenShift* namespaces
+	- **Economy class**: Run *OpenShift* only in your laptop
 	<br/>
 
 	If you're on Economy, it is mostly recommended to use *CodeReady Containers* (CRC) to run your OCP environment in your laptop. It provides a working OCP v4.2 environment, with some capabilities off so that your laptop can still breathe. See the *CRC* documentation references given below for more details.
