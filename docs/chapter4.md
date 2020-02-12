@@ -116,6 +116,8 @@ In the instructions below you will be adhering an AMQ Broker to Region-2 where m
 
 1. #### Attach the broker to the routing layer
 
+	At this stage you should have an *AMQ Broker* successfully deployed but running in isolation. Now it needs to be attached *Interconnect*. Follow the instructions below.
+
 	From namespace `amq-cluster2` navigate to:
 
 	- Web Console ➡ Operators ➡ Installed Operators ➡ AMQ Interconnect ➡ AMQ Interconnect ➡ cluster2-router-mesh ➡ YAML
