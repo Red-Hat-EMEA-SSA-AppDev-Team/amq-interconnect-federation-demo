@@ -30,7 +30,7 @@ While working with the instructions that follow, ensure you're logged in to the 
 
 	   oc get pods -n openshift-operators
 
-	>**Be patient:** this action might take some time as OpenShift needs to pull the Operator's image from a remote repository
+	>**Be patient:** this action may take some time as OpenShift needs to pull the Operator's image from a remote repository
 
 	You should see something similar to:
 
@@ -46,7 +46,6 @@ While working with the instructions that follow, ensure you're logged in to the 
 
 	   oc new-project amq-cluster1
 
-
 	Install *AMQ's Interconnect Operator*:
 
 	 - Web Console ➡ Operators ➡ OperatorHub ➡ AMQ Interconnect ➡ Install 
@@ -54,6 +53,8 @@ While working with the instructions that follow, ensure you're logged in to the 
 		(at the time of writing: v1.1.0)
 
 	Select `amq-cluster1` as the target namespace, and click '*Subscribe*'.
+
+	>**Be patient:** this action may take some time as OpenShift needs to pull the Operator's image from a remote repository.
 
 	This will trigger the operator's installation. To view the running pod execute:
 
@@ -113,10 +114,14 @@ While working with the instructions that follow, ensure you're logged in to the 
 
 	> Note: in a later section you will learn how to open Interconnect's web console to visually validate the mesh is well formed. 
 
+<br/>
 
 1. #### Expose *AMQPS* port
 
 	The tutorial guides you on how to connect external clients to *Interconnect*. To enable external connectivity we need to expose the listener's port so that external clients can connect to produce/consume messages.
+
+	![](./images/amqps-access.png "Exposed AMQPS access")
+
 
 	From namespace `amq-cluster1` navigate to:
 
