@@ -2,7 +2,7 @@
 
 ## Deploy *AMQ Interconnect* in Region-1
 
-For this first section, you'll be working on Region-1, we call it `Cluster-1`. The picture below illustrates the deployment process you're about to perform. 
+In this first chapter, you'll be working on Region-1, we call it `Cluster-1`. The picture below illustrates the deployment process you're about to perform. 
 
 
 ![](./images/region-1-intro.png "Interconnect Mesh of size 2")

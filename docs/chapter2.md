@@ -1,6 +1,19 @@
 ## Deploy *AMQ Interconnect* in Region-2
 
-In this section you'll be working on Region-2, we call it **'Cluster-2'**. Ensure you're logged in to the OCP environment representing Region-2.
+In this second chapter, you'll be working on Region-2, we call it `Cluster-2`. The picture below illustrates the deployment process you're about to perform. 
+
+
+![](./images/region-2-intro.png "Interconnect Mesh of size 2")
+
+
+As above pictured and similarly done for Region-1, two different *Operators* are at play. The *AMQ Interconnect Operator* will deploy two nodes (Routers). Then it links them to form a mesh of size two and uses the *AMQ Certificate Manager* to secure the connection between both. 
+
+While working with the instructions that follow, ensure you're logged in to the OCP environment corresponding to Region-2.
+
+<br/>
+
+
+
 
 1. #### Create Secret from Cluster-1's certificate
 
