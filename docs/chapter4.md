@@ -45,7 +45,7 @@ In the instructions below you will be adhering an AMQ Broker to Region-2 where m
 
 <br/>
 
-1. #### Deploy an Broker instance
+1. #### Deploy a Broker instance
 
 	Once the *Operator* is running, deploy the Broker:
 
@@ -89,11 +89,13 @@ In the instructions below you will be adhering an AMQ Broker to Region-2 where m
 
 	Click '*Create*' to kick off the deployment.
 
-	The *Operator* will deploy the Broker as per the definion above, and also create other necessary elements. A service will be created for clients to access the broker with the following pattern:
+	>**Be patient:** this action may take some time as *OpenShift* may need to pull the *Broker*'s image from a remote repository.
+
+	The *Operator* will deploy the Broker as per the definition above, and also create other necessary elements. A service will be created for clients to access the broker with the following pattern:
 
 	   {broker-name}-hdls-svc
 
-	If you defined the name '`broker1`' then the service would be: 
+	If you defined the name `broker1` then the service name would be: 
 
 	   broker1-hdls-svc
 
@@ -104,40 +106,43 @@ In the instructions below you will be adhering an AMQ Broker to Region-2 where m
 		Service:     broker1-hdls-svc
 		Target Port: 8161 -> 8161 (TCP)
 		```
-		Click '*Create*'
+		Click '*Create*'.
 
+<br/>
 
 1. #### Attach the broker to the routing layer
 
-	From namespace 'amq-cluster2' navigate to:
+	From namespace `amq-cluster2` navigate to:
 
-	- Web Console -> Operators -> Installed Operators -> AMQ Interconnect -> AMQ Interconnect -> cluster2-router-mesh -> YAML
+	- Web Console ➡ Operators ➡ Installed Operators ➡ AMQ Interconnect ➡ AMQ Interconnect ➡ cluster2-router-mesh ➡ YAML
+
+	<br/>
 
 	Review the default YAML definition:
 	```yaml
-	spec:listeners - port 5671
+	spec: listeners: - port 5671
 	```
 	Include the following elements:
 	```yaml
 	spec:
-		connectors:
-		- name: my-broker
-			host: broker1-hdls-svc.amq-cluster2.svc.cluster.local
-			port: 5672
-			routeContainer: true
-		linkRoutes:
-		- prefix: test
-			direction: in
-			connection: my-broker
-		- prefix: test
-			direction: out
-			connection: my-broker
+	  connectors:
+	    - name: my-broker
+	      host: broker1-hdls-svc.amq-cluster2.svc.cluster.local
+	      port: 5672
+	      routeContainer: true
+	  linkRoutes:
+	    - prefix: test
+	      direction: in
+	      connection: my-broker
+	    - prefix: test
+	      direction: out
+	      connection: my-broker
 	```
-	>**Note**: the 'host' is the fully service DNS address pointing to the broker's service
+	>**Note**: the field `host` represents the fully service DNS address pointing to the broker's service.
 
 	Click '*Save*'. The *Operator* watching the cluster will reconfigure *Interconnect* to open a connection to the defined broker.
 
-
+<br/>
 
 ## Test Brokered Interconnect flow:
 
