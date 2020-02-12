@@ -9,7 +9,9 @@ You can attach an AMQ Broker to the routing layer to enable store & forward mess
 
 ![](./images/interconnect-brokered.png "An AMQ Broker is attached to the mesh")
 
-In the instructions below you will be adhering an AMQ Broker to Region-2 where messages will be persisted before the cross to Region-1. Please note that the entire *Routing Mesh* acts as a single logical cluster, therefore, the location of where the AMQ Broker is attached is not critical.
+In the instructions below you will be adhering an AMQ Broker to Region-2 where messages will be persisted before they cross to Region-1. Please note that the entire *Routing Mesh* acts as a single logical cluster, therefore, the location of where the AMQ Broker is attached is not critical.
+
+<br/>
 
 1. #### Install AMQ's Broker Operator
 
@@ -22,11 +24,11 @@ In the instructions below you will be adhering an AMQ Broker to Region-2 where m
 
 	Install AMQ's Broker Operator:
 
-	- Web Console -> Operators -> OperatorHub -> AMQ Broker -> Install 
+	- Web Console ➡ Operators ➡ OperatorHub ➡ AMQ Broker ➡ Install 
 
 		(at the time of writing: v0.9.1)
 
-	Select '`amq-cluster2`' as the target namespace, and click '*Subscribe*'.
+	Select `amq-cluster2` as the target namespace, and click '*Subscribe*'.
 
 	This will trigger the *Operator*'s installation. To view the running pod execute:
 
