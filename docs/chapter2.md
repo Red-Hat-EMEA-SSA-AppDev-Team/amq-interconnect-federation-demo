@@ -13,8 +13,6 @@ While working with the instructions that follow, ensure you're logged in to the 
 <br/>
 
 
-
-
 1. #### Create Secret from Cluster-1's certificate
 
 	First, create the new Cluster-2 namespace, for example:
@@ -25,12 +23,15 @@ While working with the instructions that follow, ensure you're logged in to the 
 
 	   oc create secret generic cluster2-inter-router-tls --from-file=cluster2-inter-router-tls
 
+<br/>
 
 1. #### Install *AMQ's Certificate Manager Operator*
 
+	>**Note**: if you're on Economy class, and you're using the same *OpenShift* environment to simulate both regions, *AMQ's Certificate Manager Operator* should already be available, you can ignore this section. Complete the instructions below otherwise.
+
 	As previously done for Cluster-1, as an admin user, navigate to:
 
-	 - Web Console -> Operators -> OperatorHub -> AMQ Certificate Manager -> Install -> Subscribe
+	 - Web Console ➡ Operators ➡ OperatorHub ➡ AMQ Certificate Manager ➡ Install ➡ Subscribe
 
 		(at the time of writing: v1.0.0)
 
