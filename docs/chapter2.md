@@ -39,6 +39,8 @@ While working with the instructions that follow, ensure you're logged in to the 
 
 	   oc get pods -n openshift-operators
 
+	>**Be patient:** this action may take some time as *OpenShift* may need to pull the *Operator*'s image from a remote repository
+
 	You should see something similar to:
 
 	```
@@ -46,21 +48,19 @@ While working with the instructions that follow, ensure you're logged in to the 
 	cert-manager-controller-7667b78746-gk7x9   1/1     Running   0          8m48s
 	```
 
+<br/>
+
 1. #### Install *AMQ's Interconnect Operator*
-
-
-	As a standard user, create a new namespace, for example:
-
-	   oc new-project amq-cluster2
-
 
 	Install *AMQ's Interconnect Operator*:
 
-	- Web Console -> Operators -> OperatorHub -> AMQ Interconnect -> Install 
+	- Web Console ➡ Operators ➡ OperatorHub ➡ AMQ Interconnect ➡ Install 
 
 		(at the time of writing: v1.1.0)
 
 	Select `amq-cluster2` as the target namespace, and click '*Subscribe*'.
+
+	>**Be patient:** this action may take some time as *OpenShift* may need to pull the *Operator*'s image from a remote repository.
 
 	This will trigger the operator's installation. To view the running pod execute:
 
@@ -71,7 +71,8 @@ While working with the instructions that follow, ensure you're logged in to the 
 	NAME                                    READY   STATUS    RESTARTS   AGE
 	interconnect-operator-84f7fcc8b-2x225   1/1     Running   0          28s
 	```
-	
+
+<br/>
 
 
 1. #### Deploy an *Interconnect* Routing layer
@@ -80,15 +81,17 @@ While working with the instructions that follow, ensure you're logged in to the 
 
 	From namespace 'amq-cluster2':
 
-	- Operators -> Installed Operators -> AMQ Interconnect -> AMQ Interconnect -> Create Interconnect
+	- Operators ➡ Installed Operators ➡ AMQ Interconnect ➡ AMQ Interconnect ➡ Create Interconnect
 
+	>**Note:** the default YAML content defines an *Interconnect* of `size 2` which indicates the *Operator* to deploy 2 linked router nodes.
 	Review the default YAML definition and update the following:
 
 	```yaml
-		metadata:name: cluster2-router-mesh
-		spec:sslProfiles: (view sample below)
-		spec:interRouterConnectors (view sample below)
+	metadata: name: cluster2-router-mesh
+	spec: sslProfiles: (view sample below)
+	spec: interRouterConnectors: (view sample below)
 	```
+
 	The YAML should include 2 routes and look as follows:
 
 	```yaml
