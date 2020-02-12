@@ -124,10 +124,6 @@ In the instructions below you will be adhering an AMQ Broker to Region-2 where m
 
 	<br/>
 
-	Review the default YAML definition:
-	```yaml
-	spec: listeners: - port 5671
-	```
 	Include the following elements:
 	```yaml
 	spec:
@@ -145,6 +141,8 @@ In the instructions below you will be adhering an AMQ Broker to Region-2 where m
 	      connection: my-broker
 	```
 	>**Note**: the field `host` represents the fully service DNS address pointing to the broker's service.
+
+	In the YAML portion above you will notice a connector is being defined pointing to the newly deployed broker. Also, the `test` prefix indicates for which addresses the *Routing* layer should forward messages to the broker. The address `test` matches the address our *Fuse AMQP* clients are using to produce/consume messages.
 
 	Click '*Save*'. The *Operator* watching the cluster will reconfigure *Interconnect* to open a connection to the defined broker.
 
