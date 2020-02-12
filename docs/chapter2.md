@@ -229,7 +229,7 @@ Note the following facts:
  - both Region-2 nodes are inter-connected (top horizontal line)
  - Each Region-2 Router node inter-connects to one Region-1 Router node.
 
-An important observation to do is that the cross-region links have been load-balanced by Region-1, in the picture above, the connections have been distributed. However both cross-region connections could have landed into the same Region-1 Router node.
+An important observation to do in the picture above is that the cross-region links (vertical lines) have been load-balanced by Region-1, the connections have been distributed. However both cross-region connections could have landed into the same Region-1 Router node.
 </br>
 
 ---

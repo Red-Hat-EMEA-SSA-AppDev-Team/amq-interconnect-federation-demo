@@ -1,10 +1,20 @@
+# Create AMQP clients
 
+Our Federated *AMQ Interconnect* deployment has been completed, and you've visually validated all the expected Router nodes are connected. All there's left to do is to inject a data flow in the routing layer and see how messages cross from one region to another.
 
-## Create a Fuse client producer
+The chapter below will help you to build an *AMQP* producer using *Fuse* that connects to Region-2 and starts sending *AMQP* messages. On Region-1 you will connect an *AMQP* consumer to receive the messages, also built with Fuse.
 
-We will use Fuse to create an AMQP producer to send messages over the Interconnect layer. The producer will connect to Cluster-2 and send messages.
+![](./images/fuse-clients.png "Fuse AMQP producer and consumer")
 
-Create a Fuse project skeleton using the following Maven command:
+Above you see how the AMQP producer is connected to Region-2, from where messages will be sent, and an AMQP consumer, connected in Region-1, collecting the messages.
+
+<br/>
+
+## Create a *Fuse* client producer
+
+We will use *Fuse* to create an *AMQP* producer to send messages over the *Interconnect* layer. The producer will connect to Cluster-2 to send messages.
+
+Create a *Fuse* project skeleton using the following *Maven* command:
 
 ```
 mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate \
