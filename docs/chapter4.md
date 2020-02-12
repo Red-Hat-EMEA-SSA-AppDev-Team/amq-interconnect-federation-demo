@@ -5,7 +5,7 @@ The previous message flow was broker-less, it requires both producer and consume
 
 The above works well for systems designed to run synchronously. You might however require to accommodate asynchronous clients in need to send messages when no active consumer is running.
 
-You can attach an AMQ Broker to the routing layer to enable store & forward messaging. This would enable the messaging layer to persist messages and retain them until a consumer connects to the network and consumes them.
+You can attach an *AMQ Broker* to the routing layer to enable store & forward messaging. This would enable the messaging layer to persist messages and retain them until a consumer connects to the network and consumes them.
 
 ![](./images/interconnect-brokered.png "An AMQ Broker is attached to the mesh")
 
@@ -146,7 +146,7 @@ In the instructions below you will be adhering an AMQ Broker to Region-2 where m
 
 	Click '*Save*'. The *Operator* watching the cluster will reconfigure *Interconnect* and restart the router nodes to open connections to the defined broker.
 
-	Once *Interconnect* reset, if you re-open its web console you'll find the AMQ Broker (with *Artemis* symbol) attached to both routing nodes running in Region-2.
+	Once *Interconnect* reset, if you re-open its web console you'll find the *AMQ Broker* (*Artemis* symbol) attached to both routing nodes running in Region-2. *Inteconnect*'s *Operator* applies the same configuration to both routers.
 
 	<br/>
 
@@ -157,18 +157,33 @@ In the instructions below you will be adhering an AMQ Broker to Region-2 where m
 
 ## Test Brokered Interconnect flow:
 
-Since we've attached a Broker to Interconnect, the same messaging flow will now go through the broker. To demonstrate that execute the following steps:
+Since we've attached a *Broker* to *Interconnect*, the messaging flow run earlier will now go through the broker. To demonstrate it, execute the following steps:
 
 1. #### Run the producer
 
-	Ensure both the client and server are stopped. Then start only the producer (client).
+	Ensure both the producer and consumer are stopped. Then start only the producer.
 
 	You will observe this round the producer immediately starts sending messages, the attached broker is providing credits to the client.
 
-	After some messages are sent, stop the client.
+	After some messages are sent, stop the producer.
 
 
 1. #### Run the consumer
 
-	Now, start the consumer (server). You will observe how it is able to consume all the messages stored in the Broker until there's none left.
+	Now, start the consumer. You will observe how it is able to consume all the messages stored in the *Broker* until there's none left.
 
+1. #### Run both
+
+	If you run both, a constant flow of messages will traverse the following instances:
+
+	Producer ➡ Router (region-1) ➡ Broker ➡ Router (region-1) ➡ Router (region-2) ➡ Consumer
+
+	>Note: depending on which routings nodes the AMQP clients are connected to, the flow might hop some more routing nodes.
+
+	All parties involved can be visualised in the web console as shown below:
+	
+	![](./images/console-visual-clients-brokered.png "AMQ Broker linked to Interconnect")
+
+	Notice in the picture above how the AMQ Broker has an active link in use (solid black line) that illustrates messages are being inserted and extracted from the broker. 
+
+<br/>
