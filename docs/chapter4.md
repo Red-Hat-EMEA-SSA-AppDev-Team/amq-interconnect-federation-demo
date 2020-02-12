@@ -144,7 +144,14 @@ In the instructions below you will be adhering an AMQ Broker to Region-2 where m
 
 	In the YAML portion above you will notice a connector is being defined pointing to the newly deployed broker. Also, the `test` prefix indicates for which addresses the *Routing* layer should forward messages to the broker. The address `test` matches the address our *Fuse AMQP* clients are using to produce/consume messages.
 
-	Click '*Save*'. The *Operator* watching the cluster will reconfigure *Interconnect* to open a connection to the defined broker.
+	Click '*Save*'. The *Operator* watching the cluster will reconfigure *Interconnect* and restart the router nodes to open connections to the defined broker.
+
+	Once *Interconnect* reset, if you re-open its web console you'll find the AMQ Broker (with *Artemis* symbol) attached to both routing nodes running in Region-2.
+
+	<br/>
+
+	![](./images/console-visual-brokered.png "AMQ Broker linked to Interconnect")
+
 
 <br/>
 
