@@ -79,11 +79,12 @@ While working with the instructions that follow, ensure you're logged in to the 
 
 	Once the operators running, deploy the Interconnect nodes:
 
-	From namespace 'amq-cluster2':
+	From namespace `amq-cluster2`:
 
 	- Operators ➡ Installed Operators ➡ AMQ Interconnect ➡ AMQ Interconnect ➡ Create Interconnect
 
 	>**Note:** the default YAML content defines an *Interconnect* of `size 2` which indicates the *Operator* to deploy 2 linked router nodes.
+	
 	Review the default YAML definition and update the following:
 
 	```yaml
@@ -98,22 +99,22 @@ While working with the instructions that follow, ensure you're logged in to the 
 	apiVersion: interconnectedcloud.github.io/v1alpha1
 	kind: Interconnect
 	metadata:
-		name: cluster2-router-mesh
-		namespace: amq-cluster2
+	  name: cluster2-router-mesh
+	  namespace: amq-cluster2
 	spec:
-		deploymentPlan:
-		size: 2
-		role: interior
-		placement: Any
-		sslProfiles:
-		- name: inter-cluster-tls
-		credentials: cluster2-inter-router-tls
-		caCert: cluster2-inter-router-tls
-		interRouterConnectors:
-		- host: cluster1-router-mesh-55671-amq-cluster1.apps.cluster-env.env.example.opentlc.com
-		port: 443
-		verifyHostname: false
-		sslProfile: inter-cluster-tls
+	  deploymentPlan:
+	    size: 2
+	    role: interior
+	    placement: Any
+	  sslProfiles:
+	  - name: inter-cluster-tls
+	    credentials: cluster2-inter-router-tls
+	    caCert: cluster2-inter-router-tls
+	  interRouterConnectors:
+	  - host: cluster1-router-mesh-55671-amq-cluster1.apps.cluster-env.env.example.opentlc.com
+	    port: 443
+	    verifyHostname: false
+	    sslProfile: inter-cluster-tls
 	```
 
 	>**Important:**
