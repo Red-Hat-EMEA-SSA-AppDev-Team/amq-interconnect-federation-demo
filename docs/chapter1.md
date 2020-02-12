@@ -54,7 +54,7 @@ While working with the instructions that follow, ensure you're logged in to the 
 
 	Select `amq-cluster1` as the target namespace, and click '*Subscribe*'.
 
-	>**Be patient:** this action may take some time as OpenShift needs to pull the Operator's image from a remote repository.
+	>**Be patient:** this action may take some time as *OpenShift* may need to pull the *Operator*'s image from a remote repository.
 
 	This will trigger the operator's installation. To view the running pod execute:
 
@@ -142,6 +142,7 @@ While working with the instructions that follow, ensure you're logged in to the 
           sslProfile: default
           expose: true
 	```
+
 	Click `Save`. The operator watching the cluster should trigger the creation of a route pointing to the exposed port:
 
 	   cluster1-router-mesh-5671

@@ -30,6 +30,8 @@ In the instructions below you will be adhering an AMQ Broker to Region-2 where m
 
 	Select `amq-cluster2` as the target namespace, and click '*Subscribe*'.
 
+	>**Be patient:** this action may take some time as *OpenShift* may need to pull the *Operator*'s image from a remote repository.
+
 	This will trigger the *Operator*'s installation. To view the running pod execute:
 
 	   oc get pods -n amq-cluster2
@@ -41,26 +43,31 @@ In the instructions below you will be adhering an AMQ Broker to Region-2 where m
 	amq-broker-operator-84f7fcc8b-2x225     1/1     Running   0          28s
 	```
 
+<br/>
+
 1. #### Deploy an Broker instance
 
 	Once the *Operator* is running, deploy the Broker:
 
 	From namespace `amq-cluster2`:
 
-	- Operators -> Installed Operators -> AMQ Broker -> AMQ Broker -> Create Active MQArtemis
+	- Operators ➡ Installed Operators ➡ AMQ Broker ➡ AMQ Broker ➡ Create Active MQArtemis
+
+	<br/>
 
 	Review the default YAML definition:
 
 	```yaml
-	metadata:name: broker1
+	metadata: name: broker1
 	```
-	By default, the broker does not include an AMQP acceptor, we need to explicetely define one:
+	By default, the broker does not include an AMQP acceptor, we need to explicitly define one:
 
 	```yaml
-	spec:acceptors:
-		- name: amqp
-			port: 5672
-			protocols: amqp
+	spec:
+	  acceptors:
+	    - name: amqp
+	      port: 5672
+	      protocols: amqp
 	```
 
 	The YAML result should look like:
@@ -68,19 +75,19 @@ In the instructions below you will be adhering an AMQ Broker to Region-2 where m
 	apiVersion: broker.amq.io/v2alpha1
 	kind: ActiveMQArtemis
 	metadata:
-		name: broker1
-		namespace: amq-cluster2
+	  name: broker1
+	  namespace: amq-cluster2
 	spec:
-		deploymentPlan:
-		size: 1
-		image: 'registry.redhat.io/amq7/amq-broker:7.5'
-		acceptors:
-		- name: amqp
-			port: 5672
-			protocols: amqp
+	  deploymentPlan:
+	    size: 1
+	    image: 'registry.redhat.io/amq7/amq-broker:7.5'
+	  acceptors:
+	    - name: amqp
+	      port: 5672
+	      protocols: amqp
 	```
 
-	To kickoff the deployment, click '*Create*'.
+	Click '*Create*' to kick off the deployment.
 
 	The *Operator* will deploy the Broker as per the definion above, and also create other necessary elements. A service will be created for clients to access the broker with the following pattern:
 
@@ -90,10 +97,8 @@ In the instructions below you will be adhering an AMQ Broker to Region-2 where m
 
 	   broker1-hdls-svc
 
-	[OPTIONAL]
-	Create a Route to have access to the Broker's web console. Navigate to:
-
-	- Web Console -> Networking -> Routes -> Create Route
+	>**OPTIONAL**: If you'd like to access the Broker's web console you can create a Route, navigate to:
+	- Web Console ➡ Networking ➡ Routes ➡ Create Route
 		```
 		Name:        amq-console
 		Service:     broker1-hdls-svc
