@@ -195,4 +195,18 @@ Since we've attached a *Broker* to *Interconnect*, the messaging flow run earlie
 
 **Well done!** you've reached the end of the tutorial and you should have successfully deployed a full Federated multi-cluster Messaging layer.
 
-You can return to the main [Introduction page](../Readme.md#messaging-federation-using-amq-interconnect) and start all over again !
+---
+
+## Final words
+
+This tutorial has introduced you to a proposed topology that was targeted for a federation use case. This scenario of course is only one of many.
+
+Messaging allows many different interaction patterns (eg. one-to-one, one-to-many, etc), and many different topologies to address very different needs.
+
+The combination of AMQ Interconnect with AMQ Broker is very powerful, and valid for most messaging use cases. You can discover more possibilities by exploring features and capabilities of these technologies.
+
+*OpenShift* can help you to greatly reduce administrative tasks but don't forget AMQ can also be deployed and used outside *OpenShift*.
+
+--- 
+
+From here you can return to the main [Introduction page](../Readme.md#messaging-federation-using-amq-interconnect) and start all over again !
