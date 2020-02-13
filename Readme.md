@@ -3,13 +3,13 @@
 
 ## Introduction
 
-Often organisations have multiple Data Centers across different geographical regions and would like to have them connected and running as if they were forming a single logical cluster.
+Often organisations have multiple Data Centres across different geographical regions and would like to have them connected and running as if they were forming a single logical cluster.
 
 In the world of messaging and using message brokers alone, this is a challenge difficult to overcome. However *AMQ Interconnect* (based on *Apache's QPid Dispatch Router*) introduces a very important building block that opens up new options.
 
 ![](./docs/images/federation-intro.png "federated network")
 
-This tutorial showcases how to deploy an *AMQ* messaging layer that federates two different *OpenShift* clusters using *AMQ Interconnect*. This allows different *AMQ* clients, connected to different data centers, to exchange messages unaware about the regional distance that separates them. 
+This tutorial showcases how to deploy an *AMQ* messaging layer that federates two different *OpenShift* clusters using *AMQ Interconnect*. This allows different *AMQ* clients, connected to different data centres, to exchange messages unaware about the regional distance that separates them. 
 
 ### Highlights of the tutorial are:
 
