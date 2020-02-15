@@ -82,5 +82,5 @@ The tutorial is split in the following chapters:
 
 ---
 
-Start from:  [Chapter 1)](./docs/chapter1.md)
+Start from:  [Chapter 1](./docs/chapter1.md)
 
